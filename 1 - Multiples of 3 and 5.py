@@ -19,3 +19,4 @@ def sum_of_multiples_3_5_below(n):
 
 sum_of_multiples_3_5_below(1000)
 
+# Note: A quicker implementation could be achieved using formulas for summation sequences below n.
