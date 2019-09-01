@@ -15,3 +15,10 @@ Find the difference between the sum of the squares of the first one hundred natu
 
 '''
 
+def sum_square_difference(integer):
+	sum_integers_squared = ((n * (n + 1)) / 2) ** 2
+	sum_squared_integers = (n*(n+1)*(2*n + 1)) / 6
+	difference = sum_squared_integers - sum_integers_squared
+	return difference
+
+print(sum_square_difference(100))
