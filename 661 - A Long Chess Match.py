@@ -40,6 +40,21 @@ def play_a_game(p_A, p_B):
 		return 'draw'
 	elif score >= player_B_wins
 
+	
+	
+	
+def play_a_match(p_A, p_B, p_heads):
+	player_A_wins = 0
+	player_B_wins = 0
+	draws = 0
+	keep_playing = True
+	#play_a_game()
+	# generate random number
+	# determine if you play another game
+	# if random number > p_heads, play_a_game
+	# else, stop, return a dictionary of the form: { 'player_A_wins': NN, 'player_B_wins' : NN, 'draws': NN, 'total_games_played': NN}
+		
+	
 def estimate_E_A(p_A, p_B, p_heads):
 	total_games_played = 0
 	player_A_wins = 0
