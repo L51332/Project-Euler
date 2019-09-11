@@ -71,14 +71,27 @@ def play_a_match(p_A, p_B, p):
 	print("output = " + str(output))
 	return output
 		
-	
-def estimate_E_A(p_A, p_B, p_heads):
-	total_games_played = 0
-	player_A_wins = 0
-	player_B_wins = 0
-	draws = 0
-	
-	# first, you play a game
-	# this updates the values of variables listed above
-	prob_next_game = 1 - p_heads
+def E_A(p_A, p_B, p):
+	player_A_win_total = 0
+	total_matches = 0
+	i = 0
+	while i < 10000:
+		match_result = play_a_match(p_A, p_B, p)
+		total_matches += 1
+		player_A_win_total += match_result['Player_A_Wins']
+		i+=1
+	print('player_A_win_total = ' + str(player_A_win_total))
+	print('total_matches      = ' + str(total_matches))
+	print('E_A estimate = ' + str(player_A_win_total / total_matches))
+	return player_A_win_total / total_matches
+
+# TEST CASES:
+
+# E_A(0.25,0.25,0.5) ≈ 0.585786
+
+E_A(0.25, 0.25, 0.5)
+
+# E_A(0.47,0.48,0.001)≈377.471736
+
+E_A(0.47,0.48,0.001)
 
