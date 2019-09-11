@@ -32,27 +32,44 @@ E_A (p_A, p_B, p) denote the expected number of times A was leading in the match
 import random
 
 def play_a_game(p_A, p_B):
+	#print('\n')
 	player_A_wins = p_A
-	player_B_wins = p_B
-	draw = 1 - (p_A + p_B)
-	# score = generate a random number between 0 and 1
-	if score >= draw:
-		return 'draw'
-	elif score >= player_B_wins
+	player_B_wins = p_B + p_A
+	draw = p_A + p_B
+	game_result = random.random()
+	# print('player A wins = ' + str(player_A_wins))
+	# print('player B wins = ' + str(player_B_wins))
+	# print('draw = ' + str(draw))
+	# print('game result = ' + str(game_result))
+	if game_result <= player_A_wins:
+		#print('Player A Wins')
+		return 'Player A Wins'
+	if game_result > player_A_wins and game_result <= player_B_wins:
+		#print('Player B Wins')
+		return 'Player B Wins'
+	if game_result > player_B_wins:
+		#print('Draw')
+		return 'Draw'
 
-	
-	
-	
-def play_a_match(p_A, p_B, p_heads):
-	player_A_wins = 0
-	player_B_wins = 0
-	draws = 0
+def play_a_match(p_A, p_B, p):
+	# initialize return value - dictionary
+	output = {'Games Played': 0, 'Player_A_Wins': 0, 'Player_B_Wins': 0, 'Draws': 0}
 	keep_playing = True
-	#play_a_game()
-	# generate random number
-	# determine if you play another game
-	# if random number > p_heads, play_a_game
-	# else, stop, return a dictionary of the form: { 'player_A_wins': NN, 'player_B_wins' : NN, 'draws': NN, 'total_games_played': NN}
+	while keep_playing == True:
+		output['Games Played'] += 1
+		next_game = play_a_game(p_A, p_B)
+		if next_game == 'Player A Wins':
+			output['Player_A_Wins'] += 1
+		elif next_game == 'Player B Wins':
+			output['Player_B_Wins'] += 1
+		else:
+			output['Draws'] += 1
+		coinflip = random.random()
+		#print("coinflip = " + str(coinflip))
+		if coinflip < p:
+			keep_playing = False
+	print("output = " + str(output))
+	return outputstop, return a dictionary of the form: { 'player_A_wins': NN, 'player_B_wins' : NN, 'draws': NN, 'total_games_played': NN}
 		
 	
 def estimate_E_A(p_A, p_B, p_heads):
