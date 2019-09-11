@@ -69,7 +69,7 @@ def play_a_match(p_A, p_B, p):
 		if coinflip < p:
 			keep_playing = False
 	print("output = " + str(output))
-	return outputstop, return a dictionary of the form: { 'player_A_wins': NN, 'player_B_wins' : NN, 'draws': NN, 'total_games_played': NN}
+	return output
 		
 	
 def estimate_E_A(p_A, p_B, p_heads):
