@@ -53,7 +53,7 @@ def play_a_game(p_A, p_B):
 
 def play_a_match(p_A, p_B, p):
 	# initialize return value - dictionary
-	output = {'Games Played': 0, 'Player_A_Wins': 0, 'Player_B_Wins': 0, 'Draws': 0}
+	output = {'Games Played': 0, 'Player_A_Wins': 0, 'Player_B_Wins': 0, 'Draws': 0, 'Player_A_Ahead': 0, 'Player_B_Ahead': 0}
 	keep_playing = True
 	while keep_playing == True:
 		output['Games Played'] += 1
@@ -64,26 +64,34 @@ def play_a_match(p_A, p_B, p):
 			output['Player_B_Wins'] += 1
 		else:
 			output['Draws'] += 1
+		if output['Player_A_Wins'] > output['Player_B_Wins']:
+			output['Player_A_Ahead'] += 1
+		if output['Player_B_Wins'] > output['Player_A_Wins']:
+			output['Player_B_Ahead'] += 1
 		coinflip = random.random()
 		#print("coinflip = " + str(coinflip))
 		if coinflip < p:
 			keep_playing = False
-	print("output = " + str(output))
+	#print("output = " + str(output))
 	return output
 		
 def E_A(p_A, p_B, p):
-	player_A_win_total = 0
+	print('\n')
+	player_A_Ahead_total = 0
 	total_matches = 0
 	i = 0
-	while i < 10000:
+	total_trials = 100000
+	while i < total_trials:
 		match_result = play_a_match(p_A, p_B, p)
 		total_matches += 1
-		player_A_win_total += match_result['Player_A_Wins']
+		player_A_Ahead_total += match_result['Player_A_Ahead']
+		if i %math.floor(total_trials/10) == 0:
+			print("10% more cycles completed at " + str(datetime.datetime.now()))
 		i+=1
-	print('player_A_win_total = ' + str(player_A_win_total))
+	print('player_A_Ahead_total = ' + str(player_A_Ahead_total))
 	print('total_matches      = ' + str(total_matches))
-	print('E_A estimate = ' + str(player_A_win_total / total_matches))
-	return player_A_win_total / total_matches
+	print('E_A estimate = ' + str(player_A_Ahead_total / total_matches))
+	return player_A_Ahead_total / total_matches
 
 # TEST CASES:
 
@@ -91,7 +99,7 @@ def E_A(p_A, p_B, p):
 
 E_A(0.25, 0.25, 0.5)
 
-# E_A(0.47,0.48,0.001)≈377.471736
+# E_A(0.47,0.48,0.001) ≈ 377.471736
 
 E_A(0.47,0.48,0.001)
 
